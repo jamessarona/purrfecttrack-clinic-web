@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  template: `<router-outlet></router-outlet>`,
+  standalone: true,
+  imports: [RouterOutlet, CommonModule]
 })
-export class AppComponent {
-  title = 'purrfecttrack-vet-web';
-}
+export class AppComponent {}

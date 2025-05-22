@@ -58,7 +58,7 @@ export class AuthInterceptor implements HttpInterceptor {
         filter(token => token != null),
         take(1),
         switchMap(token => next.handle(this.addTokenHeader(request, token!)))
-      );ng
+      );
     }
   }
 }
