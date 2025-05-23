@@ -22,9 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment files
-/src/environments/environment*.ts
-
 # System Files
 .DS_Store
 Thumbs.db
