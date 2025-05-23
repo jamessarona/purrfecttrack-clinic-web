@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "purrfecttrack-vet-web": {
+    "purrfecttrack-clinic-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/purrfecttrack-vet-web",
+            "outputPath": "dist/purrfecttrack-clinic-web",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "purrfecttrack-vet-web:build:production"
+              "buildTarget": "purrfecttrack-clinic-web:build:production"
             },
             "development": {
-              "buildTarget": "purrfecttrack-vet-web:build:development"
+              "buildTarget": "purrfecttrack-clinic-web:build:development"
             }
           },
           "defaultConfiguration": "development"
