@@ -1,4 +1,5 @@
 <div class="home-container">
     <h1>Welcome to Clinic Website</h1>
-    <button (click)="logout()">Logout</button>
-</div>  
+    <button (click)="logout()" [disabled]="isLoggingOut">Logout</button>
+    <p *ngIf="logoutError" class="error">{{ logoutError }}</p>
+  </div>
