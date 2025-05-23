@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 interface LoginResponse {
   token: string;
@@ -18,9 +19,9 @@ interface RefreshResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly API_LOGIN = 'https://100.78.75.9:6060/api/auth/login';
-  private readonly API_REFRESH = 'https://100.78.75.9:6060/api/auth/refresh';
-  private readonly API_LOGOUT = 'https://100.78.75.9:6060/api/auth/logout';
+  private readonly API_LOGIN = `${environment.apiBaseUrl}/auth/login`;
+  private readonly API_REFRESH = `${environment.apiBaseUrl}/auth/refresh`;
+  private readonly API_LOGOUT = `${environment.apiBaseUrl}/auth/logout`;
 
   private tokenKey = 'session_token';
   private refreshTokenKey = 'refresh_token';
@@ -32,12 +33,8 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     return this.http.post<LoginResponse>(this.API_LOGIN, { email, password }).pipe(
-      tap((res) => {
-        this.setTokens(res.token, res.refreshToken);
-      }),
-      catchError((err) => {
-        return throwError(() => err);
-      })
+      tap((res) => this.setTokens(res.token, res.refreshToken)),
+      catchError((err) => throwError(() => err))
     );
   }
 
@@ -45,12 +42,8 @@ export class AuthService {
     const token = this.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(this.API_LOGOUT, {}, { headers }).pipe(
-      tap(() => {
-        this.clearTokens();
-      }),
-      catchError((err) => {
-        return throwError(() => err);
-      })
+      tap(() => this.clearTokens()),
+      catchError((err) => throwError(() => err))
     );
   }
 

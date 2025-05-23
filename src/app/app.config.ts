@@ -1,3 +1,6 @@
-export const AppConfig = {
-  apiBaseUrl: 'https://100.78.75.9:6060/api',
-};
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { tokenInterceptor } from './services/token.interceptor';
+
+export const appConfig = [
+  provideHttpClient(withInterceptors([tokenInterceptor]))
+];
