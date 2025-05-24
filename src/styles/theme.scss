@@ -1,35 +1,36 @@
-@use './custom-bootstrap' as *;
+@use 'sass:color';
+@use './custom-bootstrap' as cb;
 
 $color-gray-600: #6c757d !default;
 
 body {
-  font-family: $font-family-base;
-  background-color: $body-bg;
+  font-family: cb.$font-family-base;
+  background-color: cb.$body-bg;
   color: $color-gray-600;
   margin: 0;
 }
 
 a {
-  color: $primary;
+  color: cb.$primary;
   text-decoration: none;
 
   &:hover {
-    color: lighten($primary, 15%);
+    color: color.adjust(cb.$primary, $lightness: 15%)
   }
 }
 
 .btn-primary {
-  background-color: $primary;
+  background-color: cb.$primary;
   border: none;
-  color: $color-surface;
+  color: cb.$color-surface;
   font-weight: 600;
-  border-radius: $border-radius;
+  border-radius: cb.$border-radius;
 
   &:hover {
-    background-color: lighten($primary, 15%);
+    background-color: color.adjust(cb.$primary, $lightness: 15%)
   }
 
   &:active {
-    background-color: darken($primary, 10%);
+    background-color: color.adjust(cb.$primary, $lightness: -10%)
   }
 }
