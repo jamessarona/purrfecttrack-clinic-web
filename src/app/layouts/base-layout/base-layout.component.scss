@@ -1,0 +1,16 @@
+@use '../../../styles/custom-bootstrap' as cb;
+
+.base-layout {
+  display: flex;
+  height: 100vh;
+  background-color: cb.$body-bg;
+  font-family: cb.$font-family-base;
+}
+
+.main-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background-color: cb.$color-surface;
+  border-top-left-radius: cb.$border-radius;
+}
