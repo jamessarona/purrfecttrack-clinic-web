@@ -11,8 +11,8 @@ p {
   color: #555;
 }
 
-.btn-violet {
-  background: linear-gradient(to right, cb.$violet-gradient-start, cb.$violet-gradient-end);
+.btn-primary {
+  background: linear-gradient(to right, cb.$primary-gradient-start, cb.$primary-gradient-end);
   border: none;
   color: cb.$color-surface;
   font-weight: 600;
@@ -20,11 +20,11 @@ p {
   transition: background 0.3s ease;
 
   &:hover {
-    background: linear-gradient(to right, cb.$violet-gradient-end, cb.$violet-gradient-start);
+    background: linear-gradient(to right, cb.$primary-gradient-end, cb.$primary-gradient-start);
   }
 }
 
-.bg-gradient-violet {
-  background: linear-gradient(to right, cb.$violet-gradient-start, cb.$violet-gradient-end);
+.bg-gradient-primary {
+  background: linear-gradient(to right, cb.$primary-gradient-start, cb.$primary-gradient-end);
   border-radius: cb.$border-radius;
 }
