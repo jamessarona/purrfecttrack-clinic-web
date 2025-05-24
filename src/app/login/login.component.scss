@@ -1,0 +1,52 @@
+.btn-pink {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  border: none;
+
+  &:hover {
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+  }
+}
+
+.bg-gradient-pink {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+.login-wrapper {
+  font-family: 'Poppins', sans-serif;
+
+  h2, h3, h4, label, input, button {
+    font-family: inherit;
+  }
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+  }
+
+  input {
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+
+  .btn-primary, .btn-pink {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .signup-section {
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .btn-outline-light {
+      font-size: 0.95rem;
+    }
+  }
+}
