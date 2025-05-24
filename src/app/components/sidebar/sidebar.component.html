@@ -1,0 +1,26 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="brand d-flex align-items-center justify-content-center py-3">
+    <img src="assets/logo.png" class="logo" alt="Logo" *ngIf="!isCollapsed">
+    <img src="assets/logo-icon.png" class="logo-icon" alt="Logo Icon" *ngIf="isCollapsed">
+  </div>
+
+  <ul class="nav flex-column">
+    <li *ngFor="let item of menuItems" class="nav-item">
+      <a class="nav-link d-flex align-items-center" [routerLink]="item.link">
+        <i [class]="item.icon"></i>
+        <span *ngIf="!isCollapsed">{{ item.label }}</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="profile-section mt-auto p-3 d-flex align-items-center">
+    <img src="assets/profile.jpg" class="profile-img" *ngIf="isCollapsed" alt="Profile">
+    <div *ngIf="!isCollapsed" class="d-flex align-items-center">
+      <img src="assets/profile.jpg" class="profile-img me-2" alt="Profile">
+      <div>
+        <div class="fw-bold">Jhon Williams</div>
+        <small class="text-muted">Online</small>
+      </div>
+    </div>
+  </div>
+</div>
