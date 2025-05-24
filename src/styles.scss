@@ -1,6 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f8f9fa;
-  margin: 0;
+@use './styles/custom-bootstrap' as *;
+@use './styles/theme.scss' as *;
+
+h1, h2, h3 {
+  color: $primary;
+  font-weight: 700;
+}
+
+p {
+  font-size: $font-size-base;
+  color: #555;
+}
+
+.btn-violet {
+  background: linear-gradient(to right, $violet-gradient-start, $violet-gradient-end);
+  border: none;
+  color: $color-surface;
+  font-weight: 600;
+  border-radius: $border-radius;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(to right, $violet-gradient-end, $violet-gradient-start);
+  }
+}
+
+.bg-gradient-violet {
+  background: linear-gradient(to right, $violet-gradient-start, $violet-gradient-end);
+  border-radius: $border-radius;
 }

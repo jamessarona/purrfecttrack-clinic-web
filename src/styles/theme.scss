@@ -1,0 +1,35 @@
+@use './custom-bootstrap' as *;
+
+$color-gray-600: #6c757d !default;
+
+body {
+  font-family: $font-family-base;
+  background-color: $body-bg;
+  color: $color-gray-600;
+  margin: 0;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    color: lighten($primary, 15%);
+  }
+}
+
+.btn-primary {
+  background-color: $primary;
+  border: none;
+  color: $color-surface;
+  font-weight: 600;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: lighten($primary, 15%);
+  }
+
+  &:active {
+    background-color: darken($primary, 10%);
+  }
+}
