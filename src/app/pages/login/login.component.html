@@ -1,6 +1,6 @@
 <div class="container login-wrapper d-flex justify-content-center align-items-center min-vh-100">
-  <div class="row shadow-lg rounded overflow-hidden" style="width: 900px; max-width: 100%;">
-    <div class="col-md-6 bg-white p-5">
+  <div class="row shadow-lg rounded overflow-hidden w-100" style="max-width: 900px; height: 500px;">
+    <div class="col-md-6 bg-white p-5 d-flex flex-column justify-content-center">
       <h3 class="mb-4">Sign In</h3>
 
       <form (ngSubmit)="login()" class="needs-validation">
@@ -14,6 +14,7 @@
             class="form-control rounded-pill"
             placeholder="Username"
             required
+            autocomplete="email"
           />
         </div>
 
@@ -27,11 +28,12 @@
             class="form-control rounded-pill"
             placeholder="Password"
             required
+            autocomplete="current-password"
           />
         </div>
 
         <div class="d-grid mb-3">
-          <button type="submit" class="btn btn-pink text-white rounded-pill fw-bold">Sign In</button>
+          <button type="submit" class="btn btn-violet text-white rounded-pill fw-bold">Sign In</button>
         </div>
 
         <div class="d-flex justify-content-between align-items-center small">
@@ -46,8 +48,8 @@
       </form>
     </div>
 
-    <div class="col-md-6 d-flex flex-column justify-content-center align-items-center text-white bg-gradient-pink text-center p-5">
-      <h4 class="fw-bold mb-3">Welcome to login</h4>
+    <div class="col-md-6 d-flex flex-column justify-content-center align-items-center text-white bg-gradient-violet text-center p-5 signup-section">
+      <h3 class="fw-bold mb-3">Welcome to login</h3>
       <p class="mb-4">Don't have an account?</p>
       <a routerLink="/register" class="btn btn-outline-light rounded-pill">Sign Up</a>
     </div>

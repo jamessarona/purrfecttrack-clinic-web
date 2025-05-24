@@ -1,18 +1,62 @@
-.btn-pink {
-  background: linear-gradient(to right, #ff416c, #ff4b2b);
-  border: none;
-
-  &:hover {
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
-  }
-}
-
-.bg-gradient-pink {
-  background: linear-gradient(to right, #ff416c, #ff4b2b);
-}
+@use './../../../styles/custom-bootstrap' as *;
 
 .login-wrapper {
-  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .row {
+    width: 900px;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: nowrap; 
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .col-md-6 {
+    flex: 1 1 50%;
+  }
+
+  .signup-section {
+    background: linear-gradient(to right, $violet-gradient-start, $violet-gradient-end);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem;
+    color: $color-surface;
+    height: 100%;
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+
+    .btn-outline-light {
+      font-size: 0.95rem;
+      border-color: white;
+      color: white;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+    }
+  }
 
   h2, h3, h4, label, input, button {
     font-family: inherit;
@@ -29,24 +73,20 @@
     font-weight: 400;
   }
 
-  .btn-primary, .btn-pink {
+  .btn-primary {
     font-weight: 500;
     font-size: 1rem;
   }
 
-  .signup-section {
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
+  .form-control {
+    border-radius: 50rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 
-    p {
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .btn-outline-light {
-      font-size: 0.95rem;
-    }
+  .form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 }
