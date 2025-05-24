@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../services/auth.service';
 import { NgIf } from '@angular/common'; 
-import { NavbarComponent } from '../components/navbar/navbar.component';
+import { AuthService } from '../../services/auth.service';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
