@@ -3,7 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';  
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent {
   error = '';
   isLoading = false;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router, 
+    private user: UserService) {}
 
   login() {
     this.error = '';
@@ -28,8 +30,16 @@ export class LoginComponent {
       next: () => {
         this.auth.checkSession().subscribe({
           next: () => {
-            this.isLoading = false;
-            this.router.navigate(['/home']);
+            this.user.loadUser().subscribe({
+              next: () => {
+                this.isLoading = false;
+                this.router.navigate(['/home']);
+              },
+              error: () => {
+                this.isLoading = false;
+                this.error = 'Fetching of user detail failed';
+              }
+            });
           },
           error: () => {
             this.isLoading = false;

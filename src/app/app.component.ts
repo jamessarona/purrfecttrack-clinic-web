@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,14 @@ import { RouterModule } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.userService.loadUser().subscribe({
+      next: () => { },
+      error: () => { }
+    });
+  }
   title = 'clinic-website';
 }
