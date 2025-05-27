@@ -1,13 +1,13 @@
 export interface PetModel {
-    id: string,
-    petOwnerId: string,
-    name: string,
-    species?: string | null,
-    breed?: string | null,
-    gender?: string | null,
-    dateOfBirth: Date | null,
-    weight?: number | null,
-    color?: string | null
-    isNeutered?: boolean | null,
-    iamgeUrl?: string | null
+    id: string;
+    petOwnerId: string;
+    name: string;
+    species?: string;
+    breed?: string;
+    gender?: string;
+    dateOfBirth: Date;
+    weight?: number;
+    color?: string;
+    isNeutered?: boolean;
+    iamgeUrl?: string;
 }
