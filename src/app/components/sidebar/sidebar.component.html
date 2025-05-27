@@ -13,15 +13,21 @@
     </li>
   </ul>
 
-  <div class="profile-section mt-auto p-3 d-flex align-items-center">
-    <img src="assets/images/profile.png" class="profile-img" *ngIf="isCollapsed" alt="Profile">
-    <div *ngIf="!isCollapsed" class="d-flex align-items-center">
-      <img src="assets/images/profile.png" class="profile-img me-2" alt="Profile">
-      <div>
-        <div class="fw-bold">Jhon Williams</div>
-        <small class="text-muted">Online</small>
+  <ng-container *ngIf="(user$ | async)">
+    <div class="profile-section mt-auto p-3 d-flex align-items-center">
+      <img
+        [src]="profileImage$ | async"
+        class="profile-img"
+        *ngIf="isCollapsed"
+        alt="Profile"
+      />
+      <div *ngIf="!isCollapsed" class="d-flex align-items-center">
+        <img [src]="profileImage$ | async" class="profile-img me-2" alt="Profile" />
+        <div>
+          <div class="fw-bold">{{ displayName$ | async }}</div>
+          <small class="text-muted">{{ roleLabel$ | async }}</small>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </div>
-z

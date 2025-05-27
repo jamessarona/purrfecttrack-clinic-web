@@ -1,4 +1,5 @@
 export const environment = {
     production: true,
-    apiBaseUrl: 'https://clinic.purrfecttrack.com/api'
+    apiBaseUrl: '/api',
+    baseUrl: 'https://clinic.purrfecttrack.com'
 };
