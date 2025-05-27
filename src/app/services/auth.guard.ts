@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, Router, UrlTree } from '@angular/router';
+import {
+  CanActivate,
+  CanActivateChild,
+  Router,
+  UrlTree,
+} from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -8,15 +15,18 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private auth: AuthService, private router: Router) {}
 
-  canActivate(): boolean | UrlTree {
+  canActivate(): Observable<boolean | UrlTree> {
     return this.checkAuth();
   }
 
-  canActivateChild(): boolean | UrlTree {
+  canActivateChild(): Observable<boolean | UrlTree> {
     return this.checkAuth();
   }
 
-  private checkAuth(): boolean | UrlTree {
-    return this.auth.hasSession() ? true : this.router.createUrlTree(['/login']);
+  private checkAuth(): Observable<boolean | UrlTree> {
+    return this.auth.checkSession().pipe(
+      map(() => true), 
+      catchError(() => of(this.router.createUrlTree(['/login']))) 
+    );
   }
 }

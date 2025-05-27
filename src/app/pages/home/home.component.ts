@@ -15,7 +15,7 @@ export class HomeComponent {
   logoutError = '';
 
   constructor(private auth: AuthService, private router: Router) {}
-
+  
   logout() {
     this.isLoggingOut = true;
     this.logoutError = '';
@@ -24,7 +24,7 @@ export class HomeComponent {
         this.isLoggingOut = false;
         this.router.navigate(['/login']);
       },
-      error: (err) => {
+      error: () => {
         this.isLoggingOut = false;
         this.logoutError = 'Logout failed. Redirecting...';
         this.router.navigate(['/login']);

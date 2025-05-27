@@ -12,24 +12,35 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [FormsModule, NgIf, RouterModule],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   email = '';
   password = '';
+  rememberMe = false;
   error = '';
+  isLoading = false;
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  ngOnInit() {
-    if (this.auth.hasSession()) {
-      this.router.navigate(['/home']);
-    }
-  }
-
   login() {
     this.error = '';
-    this.auth.login(this.email, this.password).subscribe({
-      next: () => this.router.navigate(['/home']),
-      error: (err) => (this.error = 'Invalid email or password'),
+    this.isLoading = true;
+    this.auth.login(this.email, this.password, this.rememberMe).subscribe({
+      next: () => {
+        this.auth.checkSession().subscribe({
+          next: () => {
+            this.isLoading = false;
+            this.router.navigate(['/home']);
+          },
+          error: () => {
+            this.isLoading = false;
+            this.error = 'Session validation failed after login.';
+          }
+        });
+      },
+      error: () => {
+        this.isLoading = false;
+        this.error = 'Invalid email or password';
+      }
     });
   }
 }
