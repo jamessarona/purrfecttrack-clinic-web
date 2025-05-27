@@ -6,7 +6,7 @@ import { VetModel } from "./vet.model";
 export interface UserDetailModel {
     id: string;
     email: string;
-    userRole: UserRole;
+    role: UserRole;
     isActive: boolean;
     petOwner?: PetOwnerModel;
     vet?: VetModel;

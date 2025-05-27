@@ -1,7 +1,16 @@
 <div class="sidebar" [class.collapsed]="isCollapsed">
   <div class="brand d-flex align-items-center justify-content-center py-3">
-    <img src="assets/images/logo.png" class="logo" alt="Logo" *ngIf="!isCollapsed">
-    <img src="assets/images/logo.png" class="logo-icon" alt="Logo Icon" *ngIf="isCollapsed">
+    <img 
+      [src]="companyImage$ | async" 
+      class="logo" 
+      alt="Company Logo" 
+      *ngIf="!isCollapsed">
+      
+    <img 
+      [src]="companyImage$ | async" 
+      class="logo-icon" 
+      alt="Company Logo Icon" 
+      *ngIf="isCollapsed">
   </div>
 
   <ul class="nav flex-column">

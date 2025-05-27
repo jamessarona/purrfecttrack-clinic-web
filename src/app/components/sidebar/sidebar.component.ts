@@ -23,6 +23,7 @@ export class SidebarComponent {
   displayName$: Observable<string>;
   profileImage$: Observable<string>;
   roleLabel$: Observable<string>;
+  companyImage$: Observable<string>;
 
   menuItems = [
     { label: 'Dashboard', link: '/home', icon: 'bi bi-speedometer2' },
@@ -36,7 +37,8 @@ export class SidebarComponent {
 
     this.displayName$ = this.user$.pipe(
       map(user => {
-        if (!user) return '';
+        if (!user) 
+          return '';
         const firstName = user.vet?.firstName ?? user.vetStaff?.firstName ?? '';
         const lastName = user.vet?.lastName ?? user.vetStaff?.lastName ?? '';
         return `${firstName} ${lastName}`.trim();
@@ -45,14 +47,24 @@ export class SidebarComponent {
 
     this.profileImage$ = this.user$.pipe(
       map(user => {
-        if (!user) return 'assets/images/profile.png';
+        if (!user) 
+          return 'assets/images/profile.png';
         const imageUrl = user.vet?.imageUrl ?? user.vetStaff?.imageUrl;
         return imageUrl ? this.baseUrl + imageUrl : 'assets/images/profile.png';
       })
     );
 
     this.roleLabel$ = this.user$.pipe(
-      map(user => user ? getUserRoleLabel(user.userRole) : 'Unknown')
+      map(user => user ? getUserRoleLabel(user.role) : 'Unknown')
+    );
+
+    this.companyImage$ = this.user$.pipe(
+      map(user => {
+        if (!user) 
+          return 'assets/images/logo.png';
+        const imageUrl = user.vet?.company?.imageUrl ?? user.vetStaff?.company?.imageUrl;
+        return imageUrl ? this.baseUrl + imageUrl : 'assets/images/logo.png';
+      })
     );
 
     this.checkWindowSize();

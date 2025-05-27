@@ -7,4 +7,5 @@ export interface CompanyModel {
     website?: string;
     address?: string;
     taxpayerId?: string;
+    imageUrl?: string;
   }
