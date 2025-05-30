@@ -1,9 +1,9 @@
 {
-    "/api": {
-        "target": "https://localhost:6060",
-      "secure": false,
-      "changeOrigin": true,
-      "logLevel": "debug"
-    }
+  "/api": {
+    "target": "https://localhost:6060",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "cookieDomainRewrite": "localhost"
   }
-  
+}
