@@ -1,97 +1,70 @@
+@use 'sass:color';
 @use './../../../styles/custom-bootstrap' as *;
 
 .login-wrapper {
   min-height: 100vh;
+  background: linear-gradient(to bottom right, #006875, #54c1b1);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
+}
 
-  .login-box {
-    max-width: 900px;
-    height: 500px;
-  }
-  
-  .row {
-    width: 900px;
-    max-width: 100%;
-    display: flex;
-    flex-wrap: nowrap; 
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 
-    @media (max-width: 768px) {
-      flex-direction: column;
-    }
-  }
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 
-  .col-md-6 {
-    flex: 1 1 50%;
+  h3 {
+    color: #ffffff;
+    font-weight: 600;
   }
 
-  .signup-section {
-    background: linear-gradient(to right, $primary-gradient-start, $primary-gradient-end);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 3rem;
-    color: $color-surface;
-    height: 100%;
-
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: white;
-    }
-
-    p {
-      font-size: 0.9rem;
-      color: #ddd;
-    }
-
-    .btn-outline-light {
-      font-size: 0.95rem;
-      border-color: white;
-      color: white;
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-      }
-    }
+  .form-label {
+    color: #ffffff;
   }
 
-  h2, h3, h4, label, input, button {
-    font-family: inherit;
-  }
-
-  label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #555;
-  }
-
-  input {
-    font-size: 0.95rem;
-    font-weight: 400;
-  }
-
-  .btn-primary {
-    font-weight: 500;
-    font-size: 1rem;
+  .form-check-label,
+  a {
+    color: #f5f1ee;
   }
 
   .form-control {
     border-radius: 50rem;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.3s ease;
+
+    &::placeholder {
+      color: #f5f1ee;
+    }
+
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.4);
+      color: #fff;
+    }
   }
 
-  .form-check {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
+  .btn-primary {
+    background-color: $primary;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust($primary, $lightness: -5%);
+    }
+
+    &:disabled {
+      background-color: color.adjust($primary, $lightness: 10%);
+      opacity: 0.8;
+    }
   }
 }

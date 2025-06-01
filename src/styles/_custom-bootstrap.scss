@@ -1,11 +1,18 @@
-$primary: #7c3aed !default;
-$secondary: #8b5cf6 !default;
+$primary: #006875 !default;
+$secondary: #f58b72 !default;
 
-$primary-gradient-start: #5b21b6 !default;
-$primary-gradient-end: $primary !default;
+$success: #54c1b1 !default;
+$info: #f0ae79 !default; 
+$warning: #f0ae79 !default; 
+$danger: #324a4a !default; 
+$light: #f5f1ee !default; 
+$dark: #324a4a !default; 
 
-$body-bg: #f5f5f7 !default;
-$color-surface: #ffffff !default; 
+$primary-gradient-start: #006875 !default;
+$primary-gradient-end: #54c1b1 !default;
+
+$body-bg: #f5f1ee !default;
+$color-surface: #ffffff !default;
 
 $font-family-base: 'Poppins', sans-serif !default;
 $font-size-base: 1rem !default;
