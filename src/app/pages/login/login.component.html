@@ -5,8 +5,7 @@
       <img src="assets/images/logo.png" alt="Company Logo" class="login-logo" />
     </div>
     
-    <form (ngSubmit)="login()" class="needs-validation" #loginForm="ngForm" novalidate>
-      
+    <form (ngSubmit)="login()" class="needs-validation">
       <div class="mb-3 text-start">
         <label for="email" class="form-label text-uppercase small fw-bold">Username</label>
         <input
@@ -18,11 +17,7 @@
           placeholder="Username"
           required
           autocomplete="email"
-          #emailRef="ngModel"
         />
-        <div *ngIf="emailRef.invalid && emailRef.touched" class="text-warning small">
-          Username is required and must be a valid email.
-        </div>
       </div>
 
       <div class="mb-3 text-start password-input">
