@@ -1,30 +1,12 @@
-@use './styles/custom-bootstrap' as cb;
-@use './styles/theme.scss' as th;
+@use './styles/custom-bootstrap' as *;
+@use './styles/theme.scss' as *;
 
 h1, h2, h3 {
-  color: cb.$primary;
+  color: $primary;
   font-weight: 700;
 }
 
 p {
-  font-size: cb.$font-size-base;
+  font-size: $font-size-base;
   color: #555;
-}
-
-.btn-primary {
-  background: linear-gradient(to right, cb.$primary-gradient-start, cb.$primary-gradient-end);
-  border: none;
-  color: cb.$color-surface;
-  font-weight: 600;
-  border-radius: cb.$border-radius;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background: linear-gradient(to right, cb.$primary-gradient-end, cb.$primary-gradient-start);
-  }
-}
-
-.bg-gradient-primary {
-  background: linear-gradient(to right, cb.$primary-gradient-start, cb.$primary-gradient-end);
-  border-radius: cb.$border-radius;
 }

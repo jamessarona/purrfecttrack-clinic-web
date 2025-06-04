@@ -18,19 +18,3 @@ a {
     color: color.adjust(cb.$primary, $lightness: 15%)
   }
 }
-
-.btn-primary {
-  background-color: cb.$primary;
-  border: none;
-  color: cb.$color-surface;
-  font-weight: 600;
-  border-radius: cb.$border-radius;
-
-  &:hover {
-    background-color: color.adjust(cb.$primary, $lightness: 15%)
-  }
-
-  &:active {
-    background-color: color.adjust(cb.$primary, $lightness: -10%)
-  }
-}
