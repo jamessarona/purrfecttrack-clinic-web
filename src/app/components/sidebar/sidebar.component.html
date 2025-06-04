@@ -69,10 +69,15 @@
     </div>
 
     <div class="logout p-3">
-      <a class="nav-link d-flex align-items-center" routerLink="/logout">
+      <button
+        class="nav-link d-flex align-items-center"
+        (click)="logout()"
+        [disabled]="isLoggingOut"
+        type="button"
+      >
         <i class="bi bi-box-arrow-right"></i>
         <span *ngIf="!isCollapsed">Log out</span>
-      </a>
+      </button>
     </div>
   </ng-container>
 </div>

@@ -1,11 +1,12 @@
 import { Component, HostListener } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Observable, map, of } from 'rxjs';
 import { UserService } from '../../services/user/user.service';
 import { UserDetailModel } from '../../core/models/user-detail.model';
 import { getUserRoleLabel } from '../../core/utils/user-role.utils';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,6 +18,8 @@ import { environment } from '../../../environments/environment';
 export class SidebarComponent {
   isCollapsed = false;
   baseUrl = environment.baseUrl;
+  isLoggingOut = false;
+  logoutError = '';
 
   user$: Observable<UserDetailModel | null> = of(null);
   displayName$: Observable<string> = of('');
@@ -43,7 +46,7 @@ export class SidebarComponent {
     { label: 'Dark mode', icon: 'bi bi-moon', link: '/dark-mode' }
   ];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private authService: AuthService, private router: Router) {
     this.checkWindowSize();
   }
 
@@ -88,5 +91,21 @@ export class SidebarComponent {
 
   toggleCollapse(): void {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  logout() {
+    this.isLoggingOut = true;
+    this.logoutError = '';
+    this.authService.logout().subscribe({
+      next: () => {
+        this.isLoggingOut = false;
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.isLoggingOut = false;
+        this.logoutError = 'Logout failed. Redirecting...';
+        this.router.navigate(['/login']);
+      },
+    });
   }
 }
