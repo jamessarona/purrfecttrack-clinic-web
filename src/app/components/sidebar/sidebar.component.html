@@ -1,29 +1,58 @@
 <div class="sidebar" [class.collapsed]="isCollapsed">
-  <div class="brand d-flex align-items-center justify-content-center py-3">
-    <img 
-      [src]="companyImage$ | async" 
-      class="logo" 
-      alt="Company Logo" 
-      *ngIf="!isCollapsed">
-      
-    <img 
-      [src]="companyImage$ | async" 
-      class="logo-icon" 
-      alt="Company Logo Icon" 
-      *ngIf="isCollapsed">
+  <div class="brand">
+    <img [src]="companyImage$ | async" class="logo" alt="Company Logo" *ngIf="!isCollapsed" />
+    <img [src]="companyImage$ | async" class="logo-icon" alt="Company Icon" *ngIf="isCollapsed" />
   </div>
 
-  <ul class="nav flex-column">
-    <li *ngFor="let item of menuItems" class="nav-item">
-      <a class="nav-link d-flex align-items-center" [routerLink]="item.link">
-        <i [class]="item.icon"></i>
-        <span *ngIf="!isCollapsed">{{ item.label }}</span>
-      </a>
-    </li>
-  </ul>
+  <button
+    class="collapse-btn btn btn-sm"
+    (click)="toggleCollapse()"
+    [attr.aria-label]="isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'"
+  >
+    {{ isCollapsed ? '>' : '<' }}
+  </button>
+
+  <div class="nav-section">
+    <div class="nav-header" *ngIf="!isCollapsed">Marketing</div>
+    <div class="nav-header" *ngIf="isCollapsed">M</div>
+    <ul class="nav flex-column">
+      <li class="nav-item" *ngFor="let item of marketingMenu" routerLinkActive="active">
+        <a class="nav-link d-flex align-items-center" [routerLink]="item.link" [attr.title]="isCollapsed ? item.label : null">
+          <i [class]="item.icon"></i>
+          <span *ngIf="!isCollapsed">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-header" *ngIf="!isCollapsed">Payments</div>
+    <div class="nav-header" *ngIf="isCollapsed">P</div>
+    <ul class="nav flex-column">
+      <li class="nav-item" *ngFor="let item of paymentsMenu" routerLinkActive="active">
+        <a class="nav-link d-flex align-items-center" [routerLink]="item.link" [attr.title]="isCollapsed ? item.label : null">
+          <i [class]="item.icon"></i>
+          <span *ngIf="!isCollapsed">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-header" *ngIf="!isCollapsed">System</div>
+    <div class="nav-header" *ngIf="isCollapsed">S</div>
+    <ul class="nav flex-column">
+      <li class="nav-item" *ngFor="let item of systemMenu" routerLinkActive="active">
+        <a class="nav-link d-flex align-items-center" [routerLink]="item.link" [attr.title]="isCollapsed ? item.label : null">
+          <i [class]="item.icon"></i>
+          <span *ngIf="!isCollapsed">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
   <ng-container *ngIf="(user$ | async)">
-    <div class="profile-section mt-auto p-3 d-flex align-items-center">
+    <div class="profile-section d-flex align-items-center p-3">
       <img
         [src]="profileImage$ | async"
         class="profile-img"
@@ -37,6 +66,13 @@
           <small class="text-muted">{{ roleLabel$ | async }}</small>
         </div>
       </div>
+    </div>
+
+    <div class="logout p-3">
+      <a class="nav-link d-flex align-items-center" routerLink="/logout">
+        <i class="bi bi-box-arrow-right"></i>
+        <span *ngIf="!isCollapsed">Log out</span>
+      </a>
     </div>
   </ng-container>
 </div>

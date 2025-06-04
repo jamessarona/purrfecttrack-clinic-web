@@ -1,17 +1,16 @@
 import { Component, HostListener } from '@angular/core';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Observable, map } from 'rxjs';
-
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { Observable, map, of } from 'rxjs';
 import { UserService } from '../../services/user/user.service';
+import { UserDetailModel } from '../../core/models/user-detail.model';
 import { getUserRoleLabel } from '../../core/utils/user-role.utils';
 import { environment } from '../../../environments/environment';
-import { UserDetailModel } from '../../core/models/user-detail.model';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe, RouterModule],
+  imports: [NgFor, NgIf, AsyncPipe, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
@@ -19,37 +18,49 @@ export class SidebarComponent {
   isCollapsed = false;
   baseUrl = environment.baseUrl;
 
-  user$: Observable<UserDetailModel | null>;
-  displayName$: Observable<string>;
-  profileImage$: Observable<string>;
-  roleLabel$: Observable<string>;
-  companyImage$: Observable<string>;
+  user$: Observable<UserDetailModel | null> = of(null);
+  displayName$: Observable<string> = of('');
+  profileImage$: Observable<string> = of('');
+  roleLabel$: Observable<string> = of('');
+  companyImage$: Observable<string> = of('');
 
-  menuItems = [
-    { label: 'Dashboard', link: '/home', icon: 'bi bi-speedometer2' },
-    { label: 'Task List', link: '/tasks', icon: 'bi bi-list-task' },
-    { label: 'Project List', link: '/projects', icon: 'bi bi-kanban' },
-    { label: 'Time Tracking', link: '/time-tracking', icon: 'bi bi-clock' },
+  marketingMenu = [
+    { label: 'Dashboard', icon: 'bi bi-grid', link: '/dashboard' },
+    { label: 'Marketplace', icon: 'bi bi-cart3', link: '/marketplace' },
+    { label: 'Orders', icon: 'bi bi-bag-check', link: '/orders' },
+    { label: 'Tracking', icon: 'bi bi-truck', link: '/tracking' },
+    { label: 'Customers', icon: 'bi bi-people', link: '/customers' },
+    { label: 'Discounts', icon: 'bi bi-percent', link: '/discounts' }
+  ];
+
+  paymentsMenu = [
+    { label: 'Ledger', icon: 'bi bi-journal-text', link: '/ledger' },
+    { label: 'Taxes', icon: 'bi bi-receipt-cutoff', link: '/taxes' }
+  ];
+
+  systemMenu = [
+    { label: 'Settings', icon: 'bi bi-gear', link: '/settings' },
+    { label: 'Dark mode', icon: 'bi bi-moon', link: '/dark-mode' }
   ];
 
   constructor(private userService: UserService) {
+    this.checkWindowSize();
+  }
+
+  ngOnInit(): void {
     this.user$ = this.userService.user$;
 
     this.displayName$ = this.user$.pipe(
       map(user => {
-        if (!user) 
-          return '';
-        const firstName = user.vet?.firstName ?? user.vetStaff?.firstName ?? '';
-        const lastName = user.vet?.lastName ?? user.vetStaff?.lastName ?? '';
+        const firstName = user?.vet?.firstName ?? user?.vetStaff?.firstName ?? '';
+        const lastName = user?.vet?.lastName ?? user?.vetStaff?.lastName ?? '';
         return `${firstName} ${lastName}`.trim();
       })
     );
 
     this.profileImage$ = this.user$.pipe(
       map(user => {
-        if (!user) 
-          return 'assets/images/profile.png';
-        const imageUrl = user.vet?.imageUrl ?? user.vetStaff?.imageUrl;
+        const imageUrl = user?.vet?.imageUrl ?? user?.vetStaff?.imageUrl;
         return imageUrl ? this.baseUrl + imageUrl : 'assets/images/profile.png';
       })
     );
@@ -60,14 +71,10 @@ export class SidebarComponent {
 
     this.companyImage$ = this.user$.pipe(
       map(user => {
-        if (!user) 
-          return 'assets/images/logo.png';
-        const imageUrl = user.vet?.company?.imageUrl ?? user.vetStaff?.company?.imageUrl;
+        const imageUrl = user?.vet?.company?.imageUrl ?? user?.vetStaff?.company?.imageUrl;
         return imageUrl ? this.baseUrl + imageUrl : 'assets/images/logo.png';
       })
     );
-
-    this.checkWindowSize();
   }
 
   @HostListener('window:resize', [])
@@ -77,5 +84,9 @@ export class SidebarComponent {
 
   private checkWindowSize() {
     this.isCollapsed = window.innerWidth < 992;
+  }
+
+  toggleCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
 }
