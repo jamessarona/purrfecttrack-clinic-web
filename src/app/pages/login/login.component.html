@@ -5,7 +5,8 @@
       <img src="assets/images/logo.png" alt="Company Logo" class="login-logo" />
     </div>
     
-    <form (ngSubmit)="login()" class="needs-validation">
+    <form (ngSubmit)="login()" class="needs-validation" #loginForm="ngForm" novalidate>
+      
       <div class="mb-3 text-start">
         <label for="email" class="form-label text-uppercase small fw-bold">Username</label>
         <input
@@ -17,22 +18,40 @@
           placeholder="Username"
           required
           autocomplete="email"
+          #emailRef="ngModel"
         />
+        <div *ngIf="emailRef.invalid && emailRef.touched" class="text-warning small">
+          Username is required and must be a valid email.
+        </div>
       </div>
 
-      <div class="mb-3 text-start">
+      <div class="mb-3 text-start password-input">
         <label for="password" class="form-label text-uppercase small fw-bold">Password</label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-          [(ngModel)]="password"
-          class="form-control rounded-pill"
-          placeholder="Password"
-          required
-          autocomplete="current-password"
-        />
+
+        <div class="input-icon-wrapper position-relative">
+          <input
+            id="password"
+            [type]="hidePassword ? 'password' : 'text'"
+            name="password"
+            [(ngModel)]="password"
+            class="form-control rounded-pill pe-5"
+            placeholder="Password"
+            required
+            autocomplete="current-password"
+          />
+
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="togglePassword()"
+            tabindex="-1"
+            aria-label="Toggle password visibility"
+          >
+            <i class="bi" [ngClass]="hidePassword ? 'bi-eye' : 'bi-eye-slash'"></i>
+          </button>
+        </div>
       </div>
+
 
       <div class="d-flex justify-content-between align-items-center small mb-3">
         <div class="form-check">
@@ -49,7 +68,11 @@
       </div>
 
       <div class="d-grid mb-3">
-        <button type="submit" class="btn btn-primary text-white rounded-pill fw-bold" [disabled]="isLoading">
+        <button
+          type="submit"
+          class="btn btn-primary text-white rounded-pill fw-bold"
+          [disabled]="isLoading"
+        >
           {{ isLoading ? 'Signing in...' : 'Login' }}
         </button>
       </div>

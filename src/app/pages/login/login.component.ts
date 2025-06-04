@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgIf } from '@angular/common';  
+import { NgClass, NgIf } from '@angular/common';  
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user/user.service';
@@ -11,7 +11,7 @@ import { UserService } from '../../services/user/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [FormsModule, NgIf, RouterModule],
+  imports: [FormsModule, NgIf, RouterModule, NgClass],
 })
 export class LoginComponent {
   email = '';
@@ -19,6 +19,7 @@ export class LoginComponent {
   rememberMe = false;
   error = '';
   isLoading = false;
+  hidePassword = true;
 
   constructor(private auth: AuthService, private router: Router, 
     private user: UserService) {}
@@ -52,5 +53,9 @@ export class LoginComponent {
         this.error = 'Invalid email or password';
       }
     });
+  }
+
+  togglePassword(){
+    this.hidePassword = !this.hidePassword;
   }
 }
