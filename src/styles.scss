@@ -1,5 +1,11 @@
 @use './styles/custom-bootstrap' as *;
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-size: 1rem;
   line-height: 1.6;

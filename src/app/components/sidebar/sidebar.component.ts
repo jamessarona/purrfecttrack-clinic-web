@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { Observable, map, of } from 'rxjs';
 import { UserService } from '../../services/user/user.service';
 import { UserDetailModel } from '../../core/models/user-detail.model';
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [NgFor, NgIf, AsyncPipe, RouterModule],
+  imports: [NgFor, NgIf, AsyncPipe, RouterModule, NgClass],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
