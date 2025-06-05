@@ -51,7 +51,7 @@
     </ul>
   </div>
 
-  <ng-container *ngIf="(user$ | async)">
+  <div class="account-section" *ngIf="(user$ | async)">
     <div class="profile-section d-flex align-items-center p-3">
       <img
         [src]="profileImage$ | async"
@@ -83,5 +83,5 @@
         </li>
       </ul>
     </div>
-  </ng-container>
+  </div>
 </div>

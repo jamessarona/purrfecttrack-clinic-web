@@ -28,7 +28,7 @@ export class SidebarComponent {
   companyImage$: Observable<string> = of('');
 
   marketingMenu = [
-    { label: 'Dashboard', icon: 'bi bi-grid', link: '/dashboard' },
+    { label: 'Dashboard', icon: 'bi bi-grid', link: '/home' },
     { label: 'Marketplace', icon: 'bi bi-cart3', link: '/marketplace' },
     { label: 'Orders', icon: 'bi bi-bag-check', link: '/orders' },
     { label: 'Tracking', icon: 'bi bi-truck', link: '/tracking' },
