@@ -10,6 +10,9 @@
     [attr.aria-label]="isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'"
   >
     <i [ngClass]="isCollapsed ? 'bi bi-chevron-right' : 'bi bi-chevron-left'"></i>
+    <span class="visually-hidden">
+      {{ isCollapsed ? 'Expand sidebar' : 'Collapse sidebar' }}
+    </span>
   </button>
 
   <div class="nav-section">
@@ -52,7 +55,10 @@
   </div>
 
   <div class="account-section" *ngIf="(user$ | async)">
-    <div class="profile-section d-flex align-items-center p-3">
+    <a
+      class="profile-section d-flex align-items-center p-3 text-decoration-none w-100"
+      [routerLink]="['/user-profile']"
+    >
       <img
         [src]="profileImage$ | async"
         class="profile-img"
@@ -60,14 +66,18 @@
         alt="Profile"
       />
       <div *ngIf="!isCollapsed" class="d-flex align-items-center">
-        <img [src]="profileImage$ | async" class="profile-img me-2" alt="Profile" />
+        <img
+          [src]="profileImage$ | async"
+          class="profile-img me-2"
+          alt="Profile"
+        />
         <div>
           <div class="fw-bold">{{ displayName$ | async }}</div>
           <small class="text-muted">{{ roleLabel$ | async }}</small>
         </div>
       </div>
-    </div>
-
+    </a>
+  
     <div class="nav-section logout">
       <ul class="nav flex-column">
         <li class="nav-item">
