@@ -14,3 +14,10 @@
   background-color: cb.$color-surface;
   border-top-left-radius: cb.$border-radius;
 }
+
+.loading-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

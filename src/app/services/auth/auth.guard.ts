@@ -25,8 +25,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   private checkAuth(): Observable<boolean | UrlTree> {
     return this.auth.checkSession().pipe(
-      map(() => true), 
-      catchError(() => of(this.router.createUrlTree(['/login']))) 
+      map(isValid => isValid || this.router.createUrlTree(['/login']))
     );
   }
 }
