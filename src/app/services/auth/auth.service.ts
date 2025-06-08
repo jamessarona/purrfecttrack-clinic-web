@@ -70,7 +70,6 @@ export class AuthService {
     return this.sessionRequest$;
   }
 
-
   forceLogout(): void {
     console.warn('[AuthService] Forcing logout...');
     this.clearSessionCache();
