@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 
@@ -12,19 +12,19 @@ import { CommonModule } from '@angular/common';
   imports: [SidebarComponent, RouterModule, CommonModule],
 })
 export class BaseLayoutComponent {
-  isLoading = true;
+  loading = false;
 
-  constructor(private auth: AuthService, private router: Router) {}
-  
-  ngOnInit(): void {
-    this.auth.checkSession().subscribe({
-      next: (valid) => {
-        if (!valid) this.router.navigate(['/login']);
-        this.isLoading = false;
-      },
-      error: () => {
-        this.router.navigate(['/login']);
-        this.isLoading = false;
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.loading = true;
+      }
+      if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
+        this.loading = false;
       }
     });
   }
