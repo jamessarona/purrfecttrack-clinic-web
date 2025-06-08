@@ -1,0 +1,185 @@
+@use './../../../styles/custom-bootstrap' as cb;
+
+.user-profile {
+  display: flex;
+  gap: 2rem;
+  height: 100%;      // fill parent's height
+  min-height: 0;     // allow flex children to shrink properly
+
+  .sidebar {
+    width: 280px;
+    height: 100%;   // fill parent's height
+    border-right: 1px solid #e5e7eb;
+    padding-right: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; // prevent shrinking smaller than width
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    small {
+      color: #6b7280;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .user-id {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+
+      button {
+        font-size: 0.75rem;
+        background: #e5e7eb;
+        border: none;
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    }
+
+    .actions {
+      list-style: none;
+      padding: 0;
+      margin-top: auto;  // push actions and below to bottom
+      margin-bottom: 1rem;
+
+      li {
+        margin: 0.5rem 0;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      .warn {
+        color: #d97706;
+      }
+
+      .danger {
+        color: #dc2626;
+      }
+    }
+  }
+
+  .profile-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 0;   // important for flex child with scroll if any
+
+    .save-btn {
+      align-self: flex-start;
+      background: #3b82f6;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1.5rem;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+
+      h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        &.name-group {
+          flex-direction: row;
+
+          .form-field {
+            flex: 1;
+          }
+        }
+      }
+
+      .form-field {
+        position: relative;
+
+        input {
+          width: 100%;
+          padding: 1.2rem 1rem 0.4rem 1rem;
+          font-size: 0.95rem;
+          background: #f9fafb;
+          border: none;
+          border-radius: 8px;
+          outline: 1px solid #d1d5db;
+
+          &:focus {
+            outline: 2px solid #3b82f6;
+          }
+        }
+
+        label {
+          display: block;
+          margin-bottom: 0.3rem;
+          font-size: 0.75rem;
+          color: #6b7280;
+          background: transparent;
+        }
+      }
+
+      .form-field.with-tag {
+        position: relative;
+
+        .tag {
+          position: absolute;
+          right: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          background: #ecfdf5;
+          color: #10b981;
+          font-size: 0.75rem;
+          padding: 0.2rem 0.5rem;
+          border-radius: 12px;
+          font-weight: 600;
+          pointer-events: none;
+        }
+
+        input {
+          padding-right: 4.5rem;
+        }
+      }
+
+      .add-social {
+        margin-top: 1.25rem;
+        background: cb.$primary;
+        color: white;
+        padding: 0.4rem 0.8rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        width: 200px;
+        cursor: pointer;
+      }
+    }
+  }
+}

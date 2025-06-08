@@ -1,1 +1,83 @@
-<p>user-profile works!</p>
+<div class="user-profile">
+  <aside class="sidebar">
+    <img src="https://via.placeholder.com/80" alt="Profile Image" class="avatar" />
+    <h3>comeronwilliamson.com</h3>
+    <small>Last sign in 4 minutes ago</small>
+    <div class="user-id">
+      <span>User ID: user_fjeoui7n78fgh...</span>
+      <button>Copy</button>
+    </div>
+
+    <ul class="actions">
+      <li>🕵 Impersonate User</li>
+      <li>🔒 Change Password</li>
+      <li class="warn">🚫 Unban User</li>
+      <li class="danger">🗑 Delete User</li>
+    </ul>
+  </aside>
+
+  <main class="profile-details">
+    <button class="save-btn">Save</button>
+
+    <section class="card">
+      <h4>Personal Information</h4>
+
+      <div class="form-grid name-group">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" [(ngModel)]="firstName" required />
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" [(ngModel)]="lastName" required />
+        </div>
+      </div>
+
+      <div class="form-grid email-phone-group">
+        <div class="form-field with-tag">
+          <label>Email Address</label>
+          <div class="input-container">
+            <input type="email" [(ngModel)]="email" required />
+            <span class="tag">Verified</span>
+          </div>
+        </div>
+        <div class="form-field with-tag">
+          <label>Phone Number</label>
+          <div class="input-container">
+            <input type="tel" [(ngModel)]="phone" required />
+            <span class="tag">Verified</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h4>Social Media Account</h4>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Facebook</label>
+          <input type="url" [(ngModel)]="facebook" />
+        </div>
+        <div class="form-field">
+          <label>Instagram</label>
+          <input type="url" [(ngModel)]="instagram" />
+        </div>
+      </div>
+      <button class="add-social">+ Add Social Media</button>
+    </section>
+
+    <section class="card">
+      <h4>Other</h4>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Web3 Wallets</label>
+          <input type="url" [(ngModel)]="wallet" />
+        </div>
+        <div class="form-field">
+          <label>Enterprise Account</label>
+          <input type="url" [(ngModel)]="enterprise" />
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

@@ -1,22 +1,23 @@
 import { Component } from '@angular/core';
-import { UserDetailModel } from '../../core/models/user-detail.model';
-import { Observable, of } from 'rxjs';
-import { UserService } from '../../services/user/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // ✅ REQUIRED for [(ngModel)]
 
 @Component({
   selector: 'app-user-profile',
-  imports: [],
-  templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.scss',
   standalone: true,
+  imports: [CommonModule, FormsModule], // ✅ MUST include FormsModule
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent {
+  // Editable fields
+  firstName = 'Cameron';
+  lastName = 'Williamson';
+  email = 'comeronwilliamson@hotmail.com';
+  phone = '(629) 555-0129';
 
-  user$: Observable<UserDetailModel | null> = of(null);
-
-  constructor(private userService: UserService){ }
-  
-  ngOnInit(): void {
-    this.user$ = this.userService.user$;
-  }
+  facebook = 'https://www.facebook.com/comeronw';
+  instagram = 'https://www.instagram.com/comeronw';
+  wallet = 'https://wpshout.com/';
+  enterprise = 'https://www.';
 }
