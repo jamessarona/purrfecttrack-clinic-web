@@ -12,8 +12,14 @@ export class RedirectIfAuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean | UrlTree> {
     return this.auth.checkSession().pipe(
-      map(() => this.router.createUrlTree(['/home'])),
-      catchError(() => of(true))
+      map((isValid) => {
+        console.log('[RedirectIfAuthGuard] Session valid:', isValid);
+        return isValid ? this.router.createUrlTree(['/home']) : true;
+      }),
+      catchError((err) => {
+        console.error('[RedirectIfAuthGuard] Error:', err);
+        return of(true);
+      })
     );
   }
 }

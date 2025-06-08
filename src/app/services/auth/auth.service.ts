@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 import { ApiService } from '../../core/services/api.service';
+import { Router } from '@angular/router';
 
 interface LoginResponse {
   sessionId: string;
@@ -19,7 +20,7 @@ export class AuthService {
   private sessionRequest$?: Observable<any>;
   private isSessionValid = false;
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private router: Router) {}
 
   login(email: string, password: string, rememberMe: boolean): Observable<LoginResponse> {
     return this.api.post<LoginResponse>(this.API_LOGIN, { email, password, rememberMe }).pipe(
@@ -41,7 +42,11 @@ export class AuthService {
 
   refreshToken(): Observable<any> {
     return this.api.post<any>(this.API_REFRESH, {}).pipe(
-      catchError((err) => throwError(() => err))
+      catchError((err) => {
+        console.error('[AuthService] Refresh token failed', err);
+        this.forceLogout(); 
+        return throwError(() => err);
+      })
     );
   }
 
@@ -51,7 +56,9 @@ export class AuthService {
     }
 
     this.sessionRequest$ = this.api.get<any>(this.API_SESSION).pipe(
-      tap(() => this.isSessionValid = true),
+      tap(() => {
+        this.isSessionValid = true;
+      }),
       map(() => true),
       catchError((err) => {
         this.isSessionValid = false;
@@ -61,6 +68,13 @@ export class AuthService {
     );
 
     return this.sessionRequest$;
+  }
+
+
+  forceLogout(): void {
+    console.warn('[AuthService] Forcing logout...');
+    this.clearSessionCache();
+    this.router.navigate(['/login']);
   }
 
   private clearSessionCache() {
