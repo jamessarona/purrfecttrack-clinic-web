@@ -6,7 +6,7 @@ export const appConfig = [
   provideHttpClient(
     withInterceptors([
       tokenInterceptor,
-      authRetryInterceptor,
+      authRetryInterceptor,  
     ])
   )
 ];

@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-  font-size: 1rem;
+  font-size: $font-size-base;
   line-height: 1.6;
   font-family: $font-family-base;
   color: $color-gray-600;
@@ -42,7 +42,7 @@ h4 {
 }
 
 p {
-  font-size: 1rem;
+  font-size: $font-size-base;
   line-height: 1.6;
   font-weight: 400;
   margin-bottom: 1rem;
@@ -55,6 +55,6 @@ small {
 }
 
 button {
-  font-size: 1rem;
+  font-size: $font-size-base;
   font-weight: 500;
 }

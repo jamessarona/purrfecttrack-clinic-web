@@ -7,7 +7,7 @@ export interface VetModel extends ContactModel{
     specialication?: string;
     yearsOfExperience?: number;
     clinicName?: string;
-    clinicAddress?: String;
+    clinicAddress?: string;
     employmentDate?: Date;
     companyId?: string;
     company?: CompanyModel;
