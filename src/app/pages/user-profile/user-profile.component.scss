@@ -171,7 +171,8 @@
           border-radius: 12px;
           font-weight: 600;
           pointer-events: none;
-          user-select: none;
+          -webkit-user-select: none;
+          user-select: none;      
           white-space: nowrap;
         }
       }
