@@ -24,19 +24,40 @@
 
       <div class="form-grid name-group">
         <div class="form-field">
-          <label>First Name</label>
-          <input type="text" [(ngModel)]="firstName" (ngModelChange)="onFieldChange()" required />
+          <label for="firstName">First Name</label>
+          <input
+            id="firstName"
+            type="text"
+            [(ngModel)]="firstName"
+            (ngModelChange)="onFieldChange()"
+            required
+            placeholder="Enter first name"
+          />
         </div>
         <div class="form-field">
-          <label>Last Name</label>
-          <input type="text" [(ngModel)]="lastName" (ngModelChange)="onFieldChange()" required />
+          <label for="lastName">Last Name</label>
+          <input
+            id="lastName"
+            type="text"
+            [(ngModel)]="lastName"
+            (ngModelChange)="onFieldChange()"
+            required
+            placeholder="Enter last name"
+          />
         </div>
       </div>
 
       <div class="form-field with-tag">
-        <label>Phone Number</label>
+        <label for="phoneNumber">Phone Number</label>
         <div class="input-container">
-          <input type="tel" [(ngModel)]="phoneNumber" (ngModelChange)="onFieldChange()" required />
+          <input
+            id="phoneNumber"
+            type="tel"
+            [(ngModel)]="phoneNumber"
+            (ngModelChange)="onFieldChange()"
+            required
+            placeholder="Enter phone number"
+          />
           <span class="tag">Verified</span>
         </div>
       </div>
@@ -46,12 +67,24 @@
       <h4>Social Media Account</h4>
       <div class="form-grid">
         <div class="form-field">
-          <label>Facebook</label>
-          <input type="url" [(ngModel)]="companyWebsite" (ngModelChange)="onFieldChange()" />
+          <label for="facebook">Facebook</label>
+          <input
+            id="facebook"
+            type="url"
+            [(ngModel)]="companyWebsite"
+            (ngModelChange)="onFieldChange()"
+            placeholder="Enter Facebook URL"
+          />
         </div>
         <div class="form-field">
-          <label>Instagram</label>
-          <input type="url" [(ngModel)]="companyWebsite" (ngModelChange)="onFieldChange()" />
+          <label for="instagram">Instagram</label>
+          <input
+            id="instagram"
+            type="url"
+            [(ngModel)]="companyWebsite"
+            (ngModelChange)="onFieldChange()"
+            placeholder="Enter Instagram URL"
+          />
         </div>
       </div>
       <button class="add-social" disabled>+ Add Social Media</button>
@@ -61,12 +94,24 @@
       <h4>Other</h4>
       <div class="form-grid">
         <div class="form-field">
-          <label>Web3 Wallets</label>
-          <input type="url" [(ngModel)]="clinicName" (ngModelChange)="onFieldChange()" />
+          <label for="web3Wallet">Web3 Wallets</label>
+          <input
+            id="web3Wallet"
+            type="url"
+            [(ngModel)]="clinicName"
+            (ngModelChange)="onFieldChange()"
+            placeholder="Enter Web3 Wallet"
+          />
         </div>
         <div class="form-field">
-          <label>Enterprise Account</label>
-          <input type="url" [(ngModel)]="clinicName" (ngModelChange)="onFieldChange()" />
+          <label for="enterpriseAccount">Enterprise Account</label>
+          <input
+            id="enterpriseAccount"
+            type="url"
+            [(ngModel)]="clinicName"
+            (ngModelChange)="onFieldChange()"
+            placeholder="Enter Enterprise Account"
+          />
         </div>
       </div>
     </section>
