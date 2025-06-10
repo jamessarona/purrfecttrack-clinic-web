@@ -1,10 +1,10 @@
 <div class="user-profile">
   <aside class="sidebar">
     <img src="https://via.placeholder.com/80" alt="Profile Image" class="avatar" />
-    <h3>comeronwilliamson.com</h3>
+    <p class="username">{{ user?.email }}</p>
     <small>Last sign in 4 minutes ago</small>
     <div class="user-id">
-      <span>User ID: user_fjeoui7n78fgh...</span>
+      <span>User ID: {{ user?.id }}</span>
       <button>Copy</button>
     </div>
 
@@ -17,7 +17,7 @@
   </aside>
 
   <main class="profile-details">
-    <button class="save-btn">Save</button>
+    <button class="save-btn" [disabled]="!saveEnabled" (click)="save()">Save</button>
 
     <section class="card">
       <h4>Personal Information</h4>
@@ -25,28 +25,19 @@
       <div class="form-grid name-group">
         <div class="form-field">
           <label>First Name</label>
-          <input type="text" [(ngModel)]="firstName" required />
+          <input type="text" [(ngModel)]="firstName" (ngModelChange)="onFieldChange()" required />
         </div>
         <div class="form-field">
           <label>Last Name</label>
-          <input type="text" [(ngModel)]="lastName" required />
+          <input type="text" [(ngModel)]="lastName" (ngModelChange)="onFieldChange()" required />
         </div>
       </div>
 
-      <div class="form-grid email-phone-group">
-        <div class="form-field with-tag">
-          <label>Email Address</label>
-          <div class="input-container">
-            <input type="email" [(ngModel)]="email" required />
-            <span class="tag">Verified</span>
-          </div>
-        </div>
-        <div class="form-field with-tag">
-          <label>Phone Number</label>
-          <div class="input-container">
-            <input type="tel" [(ngModel)]="phone" required />
-            <span class="tag">Verified</span>
-          </div>
+      <div class="form-field with-tag">
+        <label>Phone Number</label>
+        <div class="input-container">
+          <input type="tel" [(ngModel)]="phoneNumber" (ngModelChange)="onFieldChange()" required />
+          <span class="tag">Verified</span>
         </div>
       </div>
     </section>
@@ -56,14 +47,14 @@
       <div class="form-grid">
         <div class="form-field">
           <label>Facebook</label>
-          <input type="url" [(ngModel)]="facebook" />
+          <input type="url" [(ngModel)]="companyWebsite" (ngModelChange)="onFieldChange()" />
         </div>
         <div class="form-field">
           <label>Instagram</label>
-          <input type="url" [(ngModel)]="instagram" />
+          <input type="url" [(ngModel)]="companyWebsite" (ngModelChange)="onFieldChange()" />
         </div>
       </div>
-      <button class="add-social">+ Add Social Media</button>
+      <button class="add-social" disabled>+ Add Social Media</button>
     </section>
 
     <section class="card">
@@ -71,11 +62,11 @@
       <div class="form-grid">
         <div class="form-field">
           <label>Web3 Wallets</label>
-          <input type="url" [(ngModel)]="wallet" />
+          <input type="url" [(ngModel)]="clinicName" (ngModelChange)="onFieldChange()" />
         </div>
         <div class="form-field">
           <label>Enterprise Account</label>
-          <input type="url" [(ngModel)]="enterprise" />
+          <input type="url" [(ngModel)]="clinicName" (ngModelChange)="onFieldChange()" />
         </div>
       </div>
     </section>
